@@ -4,19 +4,28 @@ interface ProjectCardProps {
   technologies: string[];
   link?: string;
 }
-        
-export default function ProjectCard({title, description, technologies, link}: ProjectCardProps) {
+
+export default function ProjectCard({ title, description, technologies, link }: ProjectCardProps) {
   return (
-    <article className="p-4 border-l-4 border-blue-600 bg-gray-50 rounded">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-700 mb-3">{description}</p>
-      <p className="text-sm text-gray-600">
-        <strong>Technologies:</strong> {technologies.join(', ')}
-      </p>
+    <article className="flex flex-col rounded-lg border border-border bg-surface-200 p-6 transition-colors hover:border-accent">
+      <h3 className="mb-2 text-xl font-bold">{title}</h3>
+      <p className="mb-4 text-ink-muted">{description}</p>
+      <ul className="mb-4 flex flex-wrap gap-2">
+        {technologies.map((tech) => (
+          <li key={tech} className="rounded-sm bg-brand-tint px-2.5 py-0.5 font-mono text-xs text-brand">
+            {tech}
+          </li>
+        ))}
+      </ul>
       {link && (
-        <p className="mt-2">
-          <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">View Project</a>
-        </p>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto text-sm font-bold text-brand underline decoration-accent decoration-2 underline-offset-4 hover:text-brand-strong"
+        >
+          View Project →
+        </a>
       )}
     </article>
   );
