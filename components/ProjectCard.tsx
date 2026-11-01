@@ -7,7 +7,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, description, technologies, link }: ProjectCardProps) {
   return (
-    <article className="flex flex-col rounded-lg border border-border bg-surface-200 p-6 transition-colors hover:border-accent">
+    <article className="flex flex-col rounded-lg border border-border border-t-4 border-t-brand bg-surface-200 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-t-accent hover:shadow-lg hover:shadow-brand/10">
       <h3 className="mb-2 text-xl font-bold">{title}</h3>
       <p className="mb-4 text-ink-muted">{description}</p>
       <ul className="mb-4 flex flex-wrap gap-2">

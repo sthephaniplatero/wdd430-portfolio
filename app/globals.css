@@ -16,14 +16,10 @@
   --color-brand-strong: #322f84;
   --color-brand-tint: #eceaf8;
   --color-accent: #c98670;
-  --color-accent-tint: #f8e9e2;
-  --color-sage: #9db5a5; /* verde salvia decorativo: hojas */
-  --color-gold: #c4a15a; /* dorado champagne: detalles del rosetón */
-  --color-slate: #8a97ab; /* gris azulado: puntos suaves */
-
-  /* Estados (siempre con texto o ícono) */
-  --color-success: #3d7a5a;
-  --color-danger: #b0435a;
+  --color-gold: #c4a15a; /* dorado champagne: puntos del fondo */
+  --color-slate: #8a97ab; /* gris azulado: puntos del fondo */
+  --color-night: #1c1a3f; /* añil muy oscuro: bandas de contraste (hero, footer) */
+  --color-glow: #d9d7ff; /* lavanda clara: puntos y formas sobre fondo oscuro */
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
@@ -44,13 +40,6 @@ body {
 h1, h2, h3 {
   letter-spacing: -0.015em;
   line-height: 1.2;
-}
-
-/* Textura de puntos tenue, se desvanece hacia los bordes */
-.dots-bg {
-  background-image: radial-gradient(var(--color-border) 1.6px, transparent 1.7px);
-  background-size: 22px 22px;
-  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
 }
 
 a:focus-visible, button:focus-visible {

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${jetbrains.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-screen flex-col">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
