@@ -1,9 +1,19 @@
 import Link from "next/link";
-import ProjectCard from "@/components/ProjectCard";
-import { getProjects, Project } from "@/lib/projects-db";
+import { Suspense } from "react";
+import ProjectSearch from "@/components/ProjectSearch";
+import Pagination from "@/components/Pagination";
+import FilteredProjectList from "@/components/FilteredProjectList";
+import { ProjectGridSkeleton } from "@/components/ProjectCardSkeleton";
+import { fetchProjectsPages } from "@/lib/projects-db";
 
-export default async function ProjectsOverviewPage() {
-  const featuredProjects = await getProjects();
+export default async function ProjectsOverviewPage(props: {
+  searchParams?: Promise<{ query?: string; page?: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query ?? "";
+  const currentPage = Math.max(1, Number(searchParams?.page) || 1);
+  const totalPages = await fetchProjectsPages(query);
+
   return (
     <div className="space-y-12">
       <div className="border-b border-border pb-6">
@@ -14,17 +24,20 @@ export default async function ProjectsOverviewPage() {
         </p>
       </div>
 
-      {/* Featured Projects Grid */}
-      <section>
-        <div className="mb-6 flex items-center justify-between">
-          <h3 className="text-xl font-bold text-ink">Featured Engineering Work</h3>
-          <span className="font-mono text-xs text-ink-muted">3 Featured</span>
+      {/* Searchable, paginated project list (state lives in the URL) */}
+      <section className="space-y-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h3 className="text-xl font-bold text-ink">All Engineering Work</h3>
+          <div className="w-full sm:max-w-xs">
+            <ProjectSearch placeholder="Search by name, tech, or type…" />
+          </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((project: Project) => (
-            <ProjectCard key={project.title} {...project} />
-          ))}
-        </div>
+
+        <Suspense key={query + currentPage} fallback={<ProjectGridSkeleton count={6} />}>
+          <FilteredProjectList query={query} currentPage={currentPage} />
+        </Suspense>
+
+        <Pagination totalPages={totalPages} />
       </section>
 
       {/* Quick Category Navigation Cards */}
