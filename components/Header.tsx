@@ -13,6 +13,7 @@ export default function Header() {
           <ul className="flex gap-8 text-sm font-medium">
             <li><HeaderLink href="/">Home</HeaderLink></li>
             <li><HeaderLink href="/about">About</HeaderLink></li>
+            <li><HeaderLink href="/projects">Projects</HeaderLink></li>
           </ul>
         </nav>
       </div>

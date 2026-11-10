@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function HeaderLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const active = usePathname() === href;
+  const pathname = usePathname();
+  const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <Link
